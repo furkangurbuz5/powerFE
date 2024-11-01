@@ -1,24 +1,81 @@
+import { Login, User } from './interface';
 
-class Employee{
+interface Address {
+        street: string;
+        city: string;
+        state: string;
+        pin: string;
+}
 
-        private name : string;
+class Employee implements Login {
 
-        public phone : number;
+        #id!: number;
+        name!: string;
+        address!: Address;
 
-        constructor(){
-                this.name = "";
-                this.phone = 1;
+        constructor(id: number, name: string, address: Address) {
+                this.address = address;
+                this.#id = id;
+                this.name = name;
+        }
+        login(): User {
+                return {
+                        name: "John",
+                        age: 26,
+                        id: 12341,
+                        email: "John@gmail.com",
+                };
         }
 
-        private func() : void
-        {
-                console.log("func");
+        getNameWithAddress(): string {
+                return `Employee ${this.name} stays at ${this.address}`;
         }
 
-        public static main()
-        {
-                const employee = new Employee();
-                employee.func();
-                const employee2 = Employee;
+        static getEmployeeCount(): number {
+                return 50;
+        }
+
+        get empId() {
+                return this.#id;
+        }
+
+        set empId(id: number) {
+                this.#id = id;
         }
 }
+
+const john = new Employee(1, "John", {
+        street: "ABC",
+        city: "Bangalore",
+        state: "Karnataka",
+        pin: "560076",
+});
+
+
+console.log(Employee.getEmployeeCount());
+
+console.log(john.getNameWithAddress());
+
+class Manager extends Employee {
+        constructor(id: number, name: string, address: Address) {
+                super(id, name, address);
+        }
+        getNameWithAddress(): string {
+                return `Manager ${this.name} stays at ${this.address}`;
+        }
+}
+
+const mike = new Manager(2, "Mike", {
+        street: "",
+        city: "",
+        state: "",
+        pin: "",
+});
+console.log(mike.getNameWithAddress());
+
+john.empId = 100;
+
+console.log(john.empId);
+console.log(mike.empId);
+
+
