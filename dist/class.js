@@ -67,3 +67,4 @@ console.log(mike.getNameWithAddress());
 john.empId = 100;
 console.log(john.empId);
 console.log(mike.empId);
+//# sourceMappingURL=class.js.map

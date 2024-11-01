@@ -32,3 +32,4 @@ let [user1, ...restUsers] = [
 // console.log(restUsers);
 let result = restUsers.filter(user => user.id >= 2);
 console.log(result);
+//# sourceMappingURL=interface.js.map

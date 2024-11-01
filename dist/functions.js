@@ -11,3 +11,4 @@ function getItems(items) {
 console.log(getItems([1, 2, 3, 4, 5]));
 let concatResult = getItems(["1", "2"]);
 console.log(concatResult);
+//# sourceMappingURL=functions.js.map
