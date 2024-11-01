@@ -2,6 +2,5 @@
 
 set -xe
 
-node_modules/typescript/bin/tsc
-
+node_modules/.bin/tsc
 
