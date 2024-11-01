@@ -2,3 +2,5 @@
 build.sh
 #ignore .sh files
 .sh
+package-lock.json
+
