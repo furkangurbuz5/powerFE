@@ -11,7 +11,7 @@ import { WorkoutComponent } from "./workout/workout.component";
 //   <p> Angular P tag multi line test</p>
 //   `,
   styleUrl: './app.component.css',
-  styles: [`h1 {color: blue}`]
+  styles: [`h1 {color: purple}`]
 })
 export class AppComponent {
   title = 'powerFE';

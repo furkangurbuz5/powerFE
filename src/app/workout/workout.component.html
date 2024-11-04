@@ -1,9 +1,22 @@
 <h1>Welcome to {{appName}}</h1>
 
-<button (click)="toggle()">Show current gym</button>
-<div [hidden]="hideGym">
-        Current available gym: 
-        <div [innerText]="currentGym"></div>        
-</div>
+<button (click)="toggle()">{{ hideGym ? 'Show ' : 'Hide ' }} info</button>
 
+<div [hidden]="hideGym">
+        Current available gym:
+        <div [innerText]="currentGym"></div>
+      
+        <div *ngIf="workouts?.barbell">
+                Current available barbell workout(s):
+                <table>
+                        <tr>
+                                <th>Workout Name</th>
+                                <th>Workout Type</th>
+                                <th>Recommended sets</th>
+                                <th>Recommended reps</th>
+                                <th>Recommended RPE</th>
+                        </tr>
+                </table>
+        </div>
+</div>
 
