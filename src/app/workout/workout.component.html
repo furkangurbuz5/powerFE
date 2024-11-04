@@ -5,7 +5,7 @@
 <div [hidden]="hideGym">
         Current available gym:
         <div [innerText]="currentGym"></div>
-      
+
         <div *ngIf="workouts?.barbell">
                 Current available barbell workout(s):
                 <table>
@@ -16,7 +16,14 @@
                                 <th>Recommended reps</th>
                                 <th>Recommended RPE</th>
                         </tr>
+                        <tr [ngClass]="e ? 'even' : 'odd'"
+                                *ngFor="let workout of workoutList; let i=index; let e=even; let o=odd">
+                                <td>{{ workout.workoutName }}</td>
+                                <td>{{ workout.workoutType }}</td>
+                                <td>{{ workout.recommendedSets }}</td>
+                                <td>{{ workout.recommendedReps }}</td>
+                                <td>{{ workout.recommendedRPE | percent}}</td>
+                        </tr>
                 </table>
         </div>
 </div>
-
