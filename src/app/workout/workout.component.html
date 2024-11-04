@@ -1,0 +1,9 @@
+<h1>Welcome to {{appName}}</h1>
+
+<button (click)="toggle()">Show current gym</button>
+<div [hidden]="hideGym">
+        Current available gym: 
+        <div [innerText]="currentGym"></div>        
+</div>
+
+
