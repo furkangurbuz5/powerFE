@@ -5,9 +5,13 @@
 <div [hidden]="hideGym">
         Current available gym:
         <div [innerText]="currentGym"></div>
-
+        <div *ngIf="selectedWorkout">
+                {{selectedWorkout | json }}
+        </div>
         <div *ngIf="workouts?.barbell">
                 Current available barbell workout(s):
-                <pow-workouts-list [workouts]="workoutList"></pow-workouts-list>
+                <pow-workouts-list [workouts]="workoutList"
+                (selectedWorkout)="selectWorkout($event)">
+        </pow-workouts-list>
         </div>
 </div>

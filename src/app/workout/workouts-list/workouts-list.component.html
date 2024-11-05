@@ -5,6 +5,9 @@
                 <th>Recommended sets</th>
                 <th>Recommended reps</th>
                 <th>Recommended RPE</th>
+                <th>
+                        Select Workout
+                </th>
         </tr>
         <tr [ngClass]="e ? 'odd' : 'even'" 
                 *ngFor="let workout of workouts; let i=index; let e=even; let o=odd">
@@ -13,5 +16,10 @@
                 <td>{{ workout.recommendedSets }}</td>
                 <td>{{ workout.recommendedReps }}</td>
                 <td>{{ workout.recommendedRPE | percent}}</td>   
+                <td><button class="btn btn-primary"
+                        (click)="selectWorkout(workout)"
+                >
+                select</button>
+                </td>
         </tr>
 </table>

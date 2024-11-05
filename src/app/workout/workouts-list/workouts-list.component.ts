@@ -13,13 +13,17 @@ export class WorkoutsListComponent implements OnInit {
         
         @Input() workouts: WorkoutList[] = [];
 
-        @Output() workoutSelected = new EventEmitter<WorkoutList>();
+        @Output() selectedWorkout = new EventEmitter<WorkoutList>();
 
         constructor(){
 
         }
 
         ngOnInit(): void {
-            
+        }
+
+        selectWorkout(workout: WorkoutList)
+        {
+                this.selectedWorkout.emit(workout);
         }
 }

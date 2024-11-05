@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Workout, WorkoutList } from './workouts';
-import { NgClass, NgFor, NgIf, PercentPipe } from '@angular/common';
+import { JsonPipe, NgClass, NgFor, NgIf, PercentPipe } from '@angular/common';
 import { WorkoutsListComponent } from './workouts-list/workouts-list.component';
 
 
 @Component({
         selector: 'pow-workout',
         standalone: true,
-        imports: [NgIf, NgFor, NgClass, PercentPipe, WorkoutsListComponent],
+        imports: [NgIf, NgFor, NgClass, PercentPipe, WorkoutsListComponent, JsonPipe],
         templateUrl: './workout.component.html',
         styleUrls: ['./workout.component.css']
 })
@@ -16,6 +16,14 @@ export class WorkoutComponent implements OnInit {
         appName = 'Power';
         currentGym = 'Sport City Houtrust';
         hideGym = false;
+        workouts: Workout = {
+                workoutId: 1,
+                name: 'Barbell squat',
+                upperBody: false,
+                lowerBody: true,
+                barbell: true
+        }
+        selectedWorkout!: WorkoutList;
 
         constructor() { }
 
@@ -68,12 +76,11 @@ export class WorkoutComponent implements OnInit {
                 this.hideGym = !this.hideGym;
         }
 
-        workouts: Workout = {
-                workoutId: 1,
-                name: 'Barbell squat',
-                upperBody: false,
-                lowerBody: true,
-                barbell: true
+        selectWorkout(workout: WorkoutList)
+        {
+                this.selectedWorkout = workout;
         }
+
+        
 
 }
