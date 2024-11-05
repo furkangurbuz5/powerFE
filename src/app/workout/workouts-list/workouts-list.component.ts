@@ -10,7 +10,7 @@ import { NgClass, NgFor, PercentPipe } from '@angular/common';
   styleUrls: ['./workouts-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class WorkoutsListComponent implements OnInit, OnChanges, OnDestroy {
+export class WorkoutsListComponent implements OnInit, OnChanges {
         
         @Input() workouts: WorkoutList[] = [];
         @Input() title: string = '';
@@ -18,9 +18,6 @@ export class WorkoutsListComponent implements OnInit, OnChanges, OnDestroy {
 
         constructor(){
 
-        }
-        ngOnDestroy(): void {
-                console.log("On destroy is called");
         }
         ngOnChanges(changes: SimpleChanges): void {
                 console.log(changes);

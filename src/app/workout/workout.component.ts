@@ -33,6 +33,7 @@ export class WorkoutComponent implements OnInit, DoCheck, AfterViewInit {
         @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
 
         constructor() { }
+
         ngAfterViewInit(): void {
                 this.headerComponent.title = "Powerlifting, Esq.";
         }
@@ -63,8 +64,6 @@ export class WorkoutComponent implements OnInit, DoCheck, AfterViewInit {
                         recommendedReps: 8,
                         recommendedRPE: .6
                 };
-
-                //this.workoutList.push(workout);
                 this.workoutList = [...this.workoutList, workout];
         }
 
