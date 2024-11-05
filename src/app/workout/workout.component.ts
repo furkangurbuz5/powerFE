@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit, } from '@angular/core';
 import { Workout, WorkoutList } from './workouts';
 import { JsonPipe, NgClass, NgFor, NgIf, PercentPipe } from '@angular/common';
 import { WorkoutsListComponent } from './workouts-list/workouts-list.component';
@@ -11,7 +11,7 @@ import { WorkoutsListComponent } from './workouts-list/workouts-list.component';
         templateUrl: './workout.component.html',
         styleUrls: ['./workout.component.css']
 })
-export class WorkoutComponent implements OnInit {
+export class WorkoutComponent implements OnInit,DoCheck {
 
         appName = 'Power';
         currentGym = 'Sport City Houtrust';
@@ -24,8 +24,14 @@ export class WorkoutComponent implements OnInit {
                 barbell: true
         }
         selectedWorkout!: WorkoutList;
+        title = 'Workout List';
 
         constructor() { }
+        
+        ngDoCheck(): void {
+                console.log('on changes is called')
+        }
+        
 
         workoutList: WorkoutList[] = [];
 
@@ -74,11 +80,27 @@ export class WorkoutComponent implements OnInit {
 
         toggle() {
                 this.hideGym = !this.hideGym;
+                this.title = "Workouts List";
         }
 
         selectWorkout(workout: WorkoutList)
         {
                 this.selectedWorkout = workout;
+        }
+
+        addWorkout()
+        {
+                const workout: WorkoutList = {
+                        workoutId: 6,
+                        workoutName: 'Bench press',
+                        workoutType: 'Upper Body',
+                        recommendedSets: 4,
+                        recommendedReps: 8,
+                        recommendedRPE: .6
+                };
+
+                //this.workoutList.push(workout);
+                this.workoutList = [...this.workoutList, workout];
         }
 
         

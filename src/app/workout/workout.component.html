@@ -8,9 +8,11 @@
         <div *ngIf="selectedWorkout">
                 {{selectedWorkout | json }}
         </div>
+        <div>
+                <button (click)="addWorkout()">Add Workout</button>
+        </div>
         <div *ngIf="workouts?.barbell">
-                Current available barbell workout(s):
-                <pow-workouts-list [workouts]="workoutList"
+                <pow-workouts-list [workouts]="workoutList" [title]="title"
                 (selectedWorkout)="selectWorkout($event)">
         </pow-workouts-list>
         </div>
