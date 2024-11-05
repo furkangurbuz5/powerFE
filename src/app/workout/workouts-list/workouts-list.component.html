@@ -1,0 +1,17 @@
+<table class="table">
+        <tr>
+                <th>Workout Name</th>
+                <th>Workout Type</th>
+                <th>Recommended sets</th>
+                <th>Recommended reps</th>
+                <th>Recommended RPE</th>
+        </tr>
+        <tr [ngClass]="e ? 'odd' : 'even'" 
+                *ngFor="let workout of workouts; let i=index; let e=even; let o=odd">
+                <td>{{ workout.workoutName }}</td>
+                <td>{{ workout.workoutType }}</td>
+                <td>{{ workout.recommendedSets }}</td>
+                <td>{{ workout.recommendedReps }}</td>
+                <td>{{ workout.recommendedRPE | percent}}</td>   
+        </tr>
+</table>

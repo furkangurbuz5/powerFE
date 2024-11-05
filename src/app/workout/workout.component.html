@@ -8,22 +8,6 @@
 
         <div *ngIf="workouts?.barbell">
                 Current available barbell workout(s):
-                <table class="table">
-                        <tr>
-                                <th>Workout Name</th>
-                                <th>Workout Type</th>
-                                <th>Recommended sets</th>
-                                <th>Recommended reps</th>
-                                <th>Recommended RPE</th>
-                        </tr>
-                        <tr [ngClass]="e ? 'even' : 'odd'"
-                                *ngFor="let workout of workoutList; let i=index; let e=even; let o=odd">
-                                <td>{{ workout.workoutName }}</td>
-                                <td>{{ workout.workoutType }}</td>
-                                <td>{{ workout.recommendedSets }}</td>
-                                <td>{{ workout.recommendedReps }}</td>
-                                <td>{{ workout.recommendedRPE | percent}}</td>
-                        </tr>
-                </table>
+                <pow-workouts-list [workouts]="workoutList"></pow-workouts-list>
         </div>
 </div>
