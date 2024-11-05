@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { WorkoutList } from '../workouts';
 import { NgClass, NgFor, PercentPipe } from '@angular/common';
 
@@ -10,7 +10,7 @@ import { NgClass, NgFor, PercentPipe } from '@angular/common';
   styleUrls: ['./workouts-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class WorkoutsListComponent implements OnInit, OnChanges {
+export class WorkoutsListComponent implements OnInit, OnChanges, OnDestroy {
         
         @Input() workouts: WorkoutList[] = [];
         @Input() title: string = '';
@@ -18,6 +18,9 @@ export class WorkoutsListComponent implements OnInit, OnChanges {
 
         constructor(){
 
+        }
+        ngOnDestroy(): void {
+                console.log("On destroy is called");
         }
         ngOnChanges(changes: SimpleChanges): void {
                 console.log(changes);
@@ -33,4 +36,5 @@ export class WorkoutsListComponent implements OnInit, OnChanges {
         {
                 this.selectedWorkout.emit(workout);
         }
+
 }

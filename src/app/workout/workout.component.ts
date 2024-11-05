@@ -1,17 +1,18 @@
-import { Component, DoCheck, OnInit, } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, OnInit, QueryList, ViewChild, ViewChildren, } from '@angular/core';
 import { Workout, WorkoutList } from './workouts';
 import { JsonPipe, NgClass, NgFor, NgIf, PercentPipe } from '@angular/common';
 import { WorkoutsListComponent } from './workouts-list/workouts-list.component';
+import { HeaderComponent } from "../header/header.component";
 
 
 @Component({
         selector: 'pow-workout',
         standalone: true,
-        imports: [NgIf, NgFor, NgClass, PercentPipe, WorkoutsListComponent, JsonPipe],
+        imports: [NgIf, NgFor, NgClass, PercentPipe, WorkoutsListComponent, JsonPipe, HeaderComponent],
         templateUrl: './workout.component.html',
         styleUrls: ['./workout.component.css']
 })
-export class WorkoutComponent implements OnInit,DoCheck {
+export class WorkoutComponent implements OnInit, DoCheck, AfterViewInit {
 
         appName = 'Power';
         currentGym = 'Sport City Houtrust';
@@ -25,57 +26,23 @@ export class WorkoutComponent implements OnInit,DoCheck {
         }
         selectedWorkout!: WorkoutList;
         title = 'Workout List';
+        workoutList: WorkoutList[] = [];
+
+
+        @ViewChild(HeaderComponent, { static: false }) headerComponent!: HeaderComponent;
+        @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
 
         constructor() { }
-        
+        ngAfterViewInit(): void {
+                this.headerComponent.title = "Powerlifting, Esq.";
+        }
+
         ngDoCheck(): void {
                 console.log('on changes is called')
         }
-        
-
-        workoutList: WorkoutList[] = [];
 
         ngOnInit(): void {
-                this.workoutList = [{
-                        workoutId: 1,
-                        workoutName: 'Barbell squat',
-                        workoutType: 'Lower Body',
-                        recommendedSets: 5,
-                        recommendedReps: 5,
-                        recommendedRPE: .6
-                },
-                {
-                        workoutId: 2,
-                        workoutName: 'Deadlift',
-                        workoutType: 'Lower Body',
-                        recommendedSets: 5,
-                        recommendedReps: 5,
-                        recommendedRPE: .6
-                },
-                {
-                        workoutId: 3,
-                        workoutName: 'Overhead press',
-                        workoutType: 'Upper Body',
-                        recommendedSets: 4,
-                        recommendedReps: 10,
-                        recommendedRPE: .5
-                },
-                {
-                        workoutId: 4,
-                        workoutName: 'Barbell row',
-                        workoutType: 'Upper Body',
-                        recommendedSets: 5,
-                        recommendedReps: 10,
-                        recommendedRPE: .5
-                },
-                {
-                        workoutId: 5,
-                        workoutName: 'Romanian deadlifts',
-                        workoutType: 'Lower Body',
-                        recommendedSets: 5,
-                        recommendedReps: 10,
-                        recommendedRPE: .5
-                }];
+                
         }
 
         toggle() {
@@ -83,13 +50,11 @@ export class WorkoutComponent implements OnInit,DoCheck {
                 this.title = "Workouts List";
         }
 
-        selectWorkout(workout: WorkoutList)
-        {
+        selectWorkout(workout: WorkoutList) {
                 this.selectedWorkout = workout;
         }
 
-        addWorkout()
-        {
+        addWorkout() {
                 const workout: WorkoutList = {
                         workoutId: 6,
                         workoutName: 'Bench press',
@@ -103,6 +68,8 @@ export class WorkoutComponent implements OnInit,DoCheck {
                 this.workoutList = [...this.workoutList, workout];
         }
 
-        
+
+
+
 
 }
