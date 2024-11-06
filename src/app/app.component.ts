@@ -1,10 +1,11 @@
-import { Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, Optional, ViewChild, ViewContainerRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { WorkoutComponent } from "./workout/workout.component";
 import { NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 import { ContainerComponent } from "./container/container.component";
 import { PersonComponent } from "./person/person.component";
-
+import { LoggerService } from './services/logger.service';
+import { localStorageToken } from './localstorage.token';
 @Component({
         selector: 'pow-root',
         standalone: true,
@@ -21,11 +22,20 @@ export class AppComponent implements OnInit {
         title = 'powerFE';
         role = 'admin';
 
-        @ViewChild('text', {static: true}) text!: ElementRef;
+        @ViewChild('apptitle', {static: true}) apptitle!: ElementRef;
+
+        constructor(@Optional() private loggerService: LoggerService,
+                @Inject(localStorageToken) private localStorage: any){
+                
+                
+        }
 
         ngOnInit(): void {
-                this.text.nativeElement.innerText = "Powerlifting, Esq.";
+                this.loggerService?.log('AppComponent.ngOnInit()');
+                this.apptitle.nativeElement.innerText = "Powerlifting, Esq.";
+                this.localStorage.setItem('name', 'Powerlifting, Esq.');
         }
+
 
         // @ViewChild('user', { read: ViewContainerRef }) vcr!: ViewContainerRef;
 

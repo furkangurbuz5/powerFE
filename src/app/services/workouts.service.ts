@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { WorkoutList } from '../workout/workouts';
+import { environment } from "../../environments/environment";
+import { AppServiceConfig } from '../AppConfig/appconfig.service';
+
 
 @Injectable({
         providedIn: 'root'
@@ -47,7 +50,11 @@ export class WorkoutsService {
                 recommendedRPE: .5
         }];
 
-        constructor() { }
+        constructor(private config: AppServiceConfig) {
+                // console.log(environment.apiEndpoint);
+                console.log(this.config.APP_CONFIG.apiEndpoint);
+                console.log("Workout service initialized");
+        }
 
         getWorkouts() {
                 return this.workoutList;

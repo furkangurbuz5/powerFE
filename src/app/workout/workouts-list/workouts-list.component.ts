@@ -33,5 +33,4 @@ export class WorkoutsListComponent implements OnInit, OnChanges {
         {
                 this.selectedWorkout.emit(workout);
         }
-
 }

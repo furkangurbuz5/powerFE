@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, DoCheck, OnInit, QueryList, ViewChild, ViewChildren, } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, OnInit, QueryList, SkipSelf, ViewChild, ViewChildren, } from '@angular/core';
 import { Workout, WorkoutList } from './workouts';
 import { JsonPipe, NgClass, NgFor, NgIf, PercentPipe } from '@angular/common';
 import { WorkoutsListComponent } from './workouts-list/workouts-list.component';
 import { HeaderComponent } from "../header/header.component";
+import { WorkoutsService } from '../services/workouts.service';
 
 
 @Component({
@@ -32,7 +33,10 @@ export class WorkoutComponent implements OnInit, DoCheck, AfterViewInit {
         @ViewChild(HeaderComponent, { static: false }) headerComponent!: HeaderComponent;
         @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
 
-        constructor() { }
+        // workoutService = new WorkoutsService();
+
+        //dependency injection: workout service
+        constructor(@SkipSelf() private workoutService: WorkoutsService) { }
 
         ngAfterViewInit(): void {
                 this.headerComponent.title = "Powerlifting, Esq.";
@@ -43,7 +47,8 @@ export class WorkoutComponent implements OnInit, DoCheck, AfterViewInit {
         }
 
         ngOnInit(): void {
-                
+                //using the dependency injection to get workouts and add to list
+                this.workoutList = this.workoutService.getWorkouts();
         }
 
         toggle() {
