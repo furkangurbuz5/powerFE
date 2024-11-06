@@ -1,22 +1,24 @@
-<h2>{{ title }}</h2>
+<!-- <h2>{{ title }}</h2> -->
 <table class="table">
-        <tr>
-                <th>Workout Name</th>
-                <th>Workout Type</th>
-                <th>Recommended sets</th>
-                <th>Recommended reps</th>
-                <th>Recommended RPE</th>
+        <tr>    
+                <th>Index</th>
+                <th>Name</th>
+                <th>Started on</th>
+                <th>Completed on</th>
+                <th># of workouts</th>
+                <th>Location</th>
                 <th>
                         Select Workout
                 </th>
         </tr>
         <tr [ngClass]="e ? 'odd' : 'even'" 
                 *ngFor="let workout of workouts; let i=index; let e=even; let o=odd">
+                <td>{{ i }}</td>
                 <td>{{ workout.workoutName }}</td>
-                <td>{{ workout.workoutType }}</td>
-                <td>{{ workout.recommendedSets }}</td>
-                <td>{{ workout.recommendedReps }}</td>
-                <td>{{ workout.recommendedRPE | percent}}</td>   
+                <td>{{ workout.startedOn.toLocaleString("en-UK") }}</td>
+                <td>{{ workout.completedOn.toLocaleString("en-UK") }}</td>
+                <td>{{ workout.workoutsDone }}</td>
+                <td>{{ workout.location }}</td>   
                 <td><button class="btn btn-primary"
                         (click)="selectWorkout(workout)"
                 >

@@ -13,9 +13,9 @@
         <div>
                 <button (click)="addWorkout()">Add Workout</button>
         </div>
-        <div *ngIf="workouts?.barbell">
-                <pow-workouts-list [workouts]="workoutList" [title]="title"
+        <div>
+                <pow-workouts-list [workouts]="workoutList"> 
                 (selectedWorkout)="selectWorkout($event)">
-        </pow-workouts-list>
+                </pow-workouts-list>
         </div>
 </div>

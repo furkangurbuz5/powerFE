@@ -1,16 +1,17 @@
 export interface Workout {
         workoutId: number;
         name: string;
-        upperBody: boolean;
-        lowerBody: boolean;
-        barbell: boolean;
+        startedOn: string;
+        completedOn: string;
+        workoutsDone: number;
+        location: string;   
 }
 
 export interface WorkoutList {
         workoutId: number,
         workoutName: string,
-        workoutType: string,
-        recommendedSets: number,
-        recommendedReps: number,
-        recommendedRPE: number
+        startedOn: Date;
+        completedOn: Date;
+        workoutsDone: number;
+        location: string;  
 }

@@ -13,7 +13,7 @@ import { NgClass, NgFor, PercentPipe } from '@angular/common';
 export class WorkoutsListComponent implements OnInit, OnChanges {
         
         @Input() workouts: WorkoutList[] = [];
-        @Input() title: string = '';
+        //@Input() title: string = '';
         @Output() selectedWorkout = new EventEmitter<WorkoutList>();
 
         constructor(){

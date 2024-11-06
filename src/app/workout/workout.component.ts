@@ -18,13 +18,7 @@ export class WorkoutComponent implements OnInit, DoCheck, AfterViewInit {
         appName = 'Power';
         currentGym = 'Sport City Houtrust';
         hideGym = false;
-        workouts: Workout = {
-                workoutId: 1,
-                name: 'Barbell squat',
-                upperBody: false,
-                lowerBody: true,
-                barbell: true
-        }
+        
         selectedWorkout!: WorkoutList;
         title = 'Workout List';
         workoutList: WorkoutList[] = [];
@@ -47,8 +41,13 @@ export class WorkoutComponent implements OnInit, DoCheck, AfterViewInit {
         }
 
         ngOnInit(): void {
-                //using the dependency injection to get workouts and add to list
-                this.workoutList = this.workoutService.getWorkouts();
+                //using the api to get workouts and add to list
+                this.workoutService.getWorkouts().subscribe(workouts => {
+                        this.workoutList = workouts;
+                });
+
+                
+                
         }
 
         toggle() {
@@ -62,12 +61,12 @@ export class WorkoutComponent implements OnInit, DoCheck, AfterViewInit {
 
         addWorkout() {
                 const workout: WorkoutList = {
-                        workoutId: 6,
+                        workoutId: 50,
                         workoutName: 'Bench press',
-                        workoutType: 'Upper Body',
-                        recommendedSets: 4,
-                        recommendedReps: 8,
-                        recommendedRPE: .6
+                        startedOn: new Date("November 29, 2024 18:30:00"),
+                        completedOn: new Date("November 29, 2024, 19:30:00"),
+                        workoutsDone: 1,
+                        location: 'Sport City Houtrust'
                 };
                 this.workoutList = [...this.workoutList, workout];
         }
