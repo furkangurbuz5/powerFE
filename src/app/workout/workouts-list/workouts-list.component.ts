@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { WorkoutList } from '../workouts';
 import { NgClass, NgFor, PercentPipe } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
         selector: 'pow-workouts-list',

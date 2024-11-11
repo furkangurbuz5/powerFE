@@ -6,10 +6,12 @@ import { ContainerComponent } from "./container/container.component";
 import { PersonComponent } from "./person/person.component";
 import { LoggerService } from './services/logger.service';
 import { localStorageToken } from './localstorage.token';
+import { RouterModule } from '@angular/router';
+import { AppNavComponent } from "./app-nav/app-nav.component";
 @Component({
         selector: 'pow-root',
         standalone: true,
-        imports: [RouterOutlet, WorkoutComponent, NgSwitch, NgSwitchCase, NgSwitchDefault, ContainerComponent, PersonComponent],
+        imports: [RouterOutlet, WorkoutComponent, NgSwitch, NgSwitchCase, NgSwitchDefault, ContainerComponent, PersonComponent, RouterModule, AppNavComponent],
         templateUrl: './app.component.html',
         //   template: `<h1>Hello World from inline template!</h1>
         //   <p> Angular P tag multi line test</p>

@@ -5,12 +5,13 @@ import { WorkoutsListComponent } from './workouts-list/workouts-list.component';
 import { HeaderComponent } from "../header/header.component";
 import { WorkoutsService } from '../services/workouts.service';
 import { Observable, Subscription } from 'rxjs';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
         selector: 'pow-workout',
         standalone: true,
-        imports: [NgIf, NgFor, NgClass, PercentPipe, WorkoutsListComponent, JsonPipe, HeaderComponent],
+        imports: [NgIf, NgFor, NgClass, PercentPipe, WorkoutsListComponent, JsonPipe, HeaderComponent, RouterModule],
         templateUrl: './workout.component.html',
         styleUrls: ['./workout.component.css'],
         changeDetection: ChangeDetectionStrategy.Default
@@ -19,7 +20,7 @@ export class WorkoutComponent implements OnInit, DoCheck, AfterViewInit, OnChang
 
         appName = 'Power';
         currentGym = 'Sport City Houtrust';
-        hideGym = true;
+        hideGym = false;
 
         selectedWorkout!: WorkoutList;
         title = 'Workout List';
