@@ -10,8 +10,8 @@
         </tr>
         <tr [ngClass]="e ? 'odd' : 'even'" *ngFor="let workout of workouts; let e=even">
             <td>{{ workout.title || "No name available" }}</td>
-            <td>{{ workout.startedOn?.toLocaleString("en-UK") || "No date available" }}</td>
-            <td>{{ workout.completedOn?.toLocaleString("en-UK") || "No date available" }}</td>
+            <td>{{ workout.startedOn.toLocaleString("en-UK") || "No date available" }}</td>
+            <td>{{ workout.completedOn.toLocaleString("en-UK") || "No date available" }}</td>
             <td>{{ workout.workoutsDone || 0 }}</td>
             <td>{{ workout.location || "No location available" }}</td>
             <td>
@@ -20,5 +20,5 @@
                 </button>
             </td>
         </tr>
-    </table>
+</table>
     

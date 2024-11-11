@@ -4,7 +4,7 @@ import { JsonPipe, NgClass, NgFor, NgIf, PercentPipe } from '@angular/common';
 import { WorkoutsListComponent } from './workouts-list/workouts-list.component';
 import { HeaderComponent } from "../header/header.component";
 import { WorkoutsService } from '../services/workouts.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 
 @Component({
@@ -33,6 +33,8 @@ export class WorkoutComponent implements OnInit, DoCheck, AfterViewInit, OnChang
                 // observer.error('error');
         });
 
+        subscription !: Subscription;
+
         @ViewChild(HeaderComponent, { static: false }) headerComponent!: HeaderComponent;
         @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
 
@@ -56,14 +58,10 @@ export class WorkoutComponent implements OnInit, DoCheck, AfterViewInit, OnChang
                 this.stream.subscribe((data) => console.log(data));
 
                 //using the api to get workouts and add to list
-                this.workoutService.getWorkouts().subscribe(workouts => {
+                this.workoutService.getWorkouts().subscribe((workouts) => {
                         console.log("Fetched workouts: ", workouts);
                         this.workoutList = workouts;
                 });
-
-                // this.workoutService.getPhotos().subscribe((data) => {
-                //         console.log(data);
-                // });
         }
 
         toggle() {
@@ -92,7 +90,7 @@ export class WorkoutComponent implements OnInit, DoCheck, AfterViewInit, OnChang
 
         addWorkout() {
                 const workout: WorkoutList = {
-                        id: 1,
+                        id: 6,
                         title: 'Barbell squat',
                         startedOn: new Date("November 29, 2024 18:30:00"),
                         completedOn: new Date("November 29, 2024, 19:30:00"),
@@ -105,21 +103,12 @@ export class WorkoutComponent implements OnInit, DoCheck, AfterViewInit, OnChang
         }
 
         deleteWorkout(){
-                this.workoutService.deleteWorkout(1).subscribe((data) => {
+                this.workoutService.deleteWorkout(6).subscribe((data) => {
                 });
         }
 
         ngOnChanges(changes: SimpleChanges): void {
-                console.log("haha");
                 console.log(changes);
-
-                // if(changes['title']){
-                //         this.title = changes['title'].currentValue.toUpperCase();
-                // }
-        }
-
-        refresh(){
-                this.ngOnInit();
         }
 
 }

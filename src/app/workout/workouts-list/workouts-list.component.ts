@@ -23,11 +23,8 @@ export class WorkoutsListComponent implements OnInit, OnChanges {
         }
 
         ngOnChanges(changes: SimpleChanges): void {
-                console.log("hehe")
-                console.log(changes);
-                // if(changes['title']){
-                //         this.title = changes['title'].currentValue.toUpperCase();
-                // }
+                
+
         }
 
         ngOnInit(): void {

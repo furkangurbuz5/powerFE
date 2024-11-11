@@ -3,6 +3,7 @@ import { WorkoutList } from '../workout/workouts';
 import { environment } from "../../environments/environment";
 import { AppServiceConfig } from '../AppConfig/appconfig.service';
 import { HttpClient, HttpRequest } from '@angular/common/http';
+import { shareReplay, BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -10,14 +11,12 @@ import { HttpClient, HttpRequest } from '@angular/common/http';
 })
 export class WorkoutsService {
 
-        workoutList: WorkoutList[] = [
-
-        ];
-
+        workoutList: WorkoutList[] = []; 
+        
         constructor(private http: HttpClient) {
                 console.log("Workout service initialized");
         }
-
+        
         getWorkouts() {
                 return this.http.get<WorkoutList[]>(`${environment.apiEndpoint}/api/workouts`);
         }
@@ -40,9 +39,6 @@ export class WorkoutsService {
                         "https://jsonplaceholder.typicode.com/photos",
                         { reportProgress: true }
                 );
-
                 return this.http.request(request);
-        }
-
-        
+        }        
 }
