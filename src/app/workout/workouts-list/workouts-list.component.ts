@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 @Component({
         selector: 'pow-workouts-list',
         standalone: true,
-        imports: [NgClass, PercentPipe, WorkoutsListComponent, NgFor],
+        imports: [NgClass, PercentPipe, WorkoutsListComponent, NgFor, RouterModule],
         templateUrl: './workouts-list.component.html',
         styleUrls: ['./workouts-list.component.css'],
         changeDetection: ChangeDetectionStrategy.Default
@@ -33,6 +33,7 @@ export class WorkoutsListComponent implements OnInit, OnChanges {
         }
 
         selectWorkout(workout: WorkoutList) {
+                console.log(workout);
                 this.selectedWorkout.emit(workout);
         }
 }

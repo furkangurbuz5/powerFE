@@ -15,9 +15,10 @@
             <td>{{ workout.workoutsDone || 0 }}</td>
             <td>{{ workout.location || "No location available" }}</td>
             <td>
-                <button class="btn btn-primary" (click)="selectWorkout(workout)">
+                <!-- <button class="btn btn-primary" (click)="selectWorkout(workout)">
                     Select
-                </button>
+                </button> -->
+                <button class="btn btn-primary" [routerLink]="['/workout', workout.id]">Go to workout</button>
             </td>
         </tr>
 </table>
