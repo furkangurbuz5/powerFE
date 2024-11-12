@@ -2,34 +2,46 @@ import { AsyncPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable } from 'rxjs';
+import { WorkoutList } from '../workouts';
+import { FormsModule } from '@angular/forms';
+import { JsonPipe } from '@angular/common';
+import { WorkoutsService } from '../../services/workouts.service';
 
 @Component({
-  selector: 'pow-workouts-adding',
-  standalone: true,
-  imports: [AsyncPipe],
-  templateUrl: './workouts-adding.component.html',
-  styleUrl: './workouts-adding.component.css'
+        selector: 'pow-workouts-adding',
+        standalone: true,
+        imports: [AsyncPipe, FormsModule, JsonPipe],
+        templateUrl: './workouts-adding.component.html',
+        styleUrl: './workouts-adding.component.css'
 })
-export class WorkoutsAddingComponent implements OnInit{
+export class WorkoutsAddingComponent implements OnInit {
 
-        id : number = 0; //default
-        id$ : Observable<any>;
+        id: number = 0; //default
+        // id$ : Observable<any>;
 
-        constructor(private router: ActivatedRoute){
-                this.id$ = this.router.paramMap.pipe(
-                        map((params) => params.get('id'))
-                );
+        workout: WorkoutList = {
+                id: 0,
+                title: "",
+                startedOn: new Date("November 29, 2024 18:30:00"),
+                completedOn: new Date("November 29, 2024 20:30:00"),
+                workoutsDone: 0,
+                location: ""
         }
 
-        ngOnInit(): void{
-                //this.id = this.router.snapshot.params['id']; //this will never receive a new value
-                // this.id$ = this.router.params.pipe(
-                //         map(params => params['id'])
-                // );
+        constructor(private workoutService: WorkoutsService, private router: ActivatedRoute) {
 
-                //this.router.paramMap.subscribe((params) => { params.get('id'); })
+        }
 
-                //this.router.params.subscribe((params) => { this.id = params['id']; });
+        ngOnInit(): void {
+
+        }
+
+        successMessage: string = "";
+
+        AddRoom() {
+                this.workoutService
+                .addWorkout(this.workout)
+                .subscribe((data) => this.successMessage = "Workout added!");
         }
 
 }

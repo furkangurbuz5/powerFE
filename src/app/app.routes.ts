@@ -8,6 +8,7 @@ import { WorkoutsAddingComponent } from './workout/workouts-adding/workouts-addi
 export const routes: Routes = [
         {path: 'workout', component: WorkoutComponent},
         {path: 'workout/:id', component: WorkoutsAddingComponent},
+        {path: 'workout/add', component: WorkoutsAddingComponent},
         {path: 'person', component: PersonComponent},
         {path: '', redirectTo: '/workout', pathMatch: 'full'},
         {path: '**', component: NotfoundComponent}
