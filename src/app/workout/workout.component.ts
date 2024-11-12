@@ -16,7 +16,7 @@ import { RouterModule } from '@angular/router';
         styleUrls: ['./workout.component.css'],
         changeDetection: ChangeDetectionStrategy.Default
 })
-export class WorkoutComponent implements OnInit, DoCheck, AfterViewInit, OnChanges {
+export class WorkoutComponent implements OnInit, AfterViewInit {
 
         appName = 'Power';
         currentGym = 'Sport City Houtrust';
@@ -40,15 +40,12 @@ export class WorkoutComponent implements OnInit, DoCheck, AfterViewInit, OnChang
         @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
 
         //dependency injection: workout service
-        constructor(private workoutService: WorkoutsService) { }
+        constructor(private workoutService: WorkoutsService, private cdr: ChangeDetectorRef) { }
 
         ngAfterViewInit(): void {
                 this.headerComponent.title = "Powerlifting, Esq.";
         }
 
-        ngDoCheck(): void {
-                console.log('on changes is called')
-        }
 
         ngOnInit(): void {
                 this.stream.subscribe({
@@ -56,7 +53,7 @@ export class WorkoutComponent implements OnInit, DoCheck, AfterViewInit, OnChang
                         complete: () => console.log('complete'),
                         error: (err) => console.log(err),
                 });
-                this.stream.subscribe((data) => console.log(data));
+                //this.stream.subscribe((data) => console.log(data));
 
                 //using the api to get workouts and add to list
                 this.workoutService.getWorkouts().subscribe((workouts) => {
@@ -100,6 +97,7 @@ export class WorkoutComponent implements OnInit, DoCheck, AfterViewInit, OnChang
                 };
                 this.workoutService.addWorkout(workout).subscribe((data) => {
                         this.workoutList = data;
+                        this.cdr.detectChanges();
                 });
         }
 
@@ -108,8 +106,5 @@ export class WorkoutComponent implements OnInit, DoCheck, AfterViewInit, OnChang
                 });
         }
 
-        ngOnChanges(changes: SimpleChanges): void {
-                console.log(changes);
-        }
-
+        
 }

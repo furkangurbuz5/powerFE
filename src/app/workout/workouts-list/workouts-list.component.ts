@@ -21,7 +21,7 @@ export class WorkoutsListComponent implements OnInit, OnChanges {
         constructor() { }
 
         ngDoCheck(): void {
-                console.log('on changes is calledddd')
+                console.log('on changes WorkoutListComponent')
         }
 
         ngOnChanges(changes: SimpleChanges): void {
@@ -35,5 +35,8 @@ export class WorkoutsListComponent implements OnInit, OnChanges {
         selectWorkout(workout: WorkoutList) {
                 console.log(workout);
                 this.selectedWorkout.emit(workout);
+        }
+        trackByWorkoutId(index: number, workout: WorkoutList) {
+                return workout.id;
         }
 }

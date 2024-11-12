@@ -8,7 +8,7 @@
             <th>Location</th>
             <th>Select Workout</th>
         </tr>
-        <tr [ngClass]="e ? 'odd' : 'even'" *ngFor="let workout of workouts; let e=even">
+        <tr [ngClass]="e ? 'odd' : 'even'" *ngFor="let workout of workouts; let e=even; trackBy: trackByWorkoutId ">
             <td>{{ workout.title || "No name available" }}</td>
             <td>{{ workout.startedOn.toLocaleString("en-UK") || "No date available" }}</td>
             <td>{{ workout.completedOn.toLocaleString("en-UK") || "No date available" }}</td>
