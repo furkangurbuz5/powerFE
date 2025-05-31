@@ -8,15 +8,18 @@ import { WorkoutsService } from '../services/workouts.service';
   imports: [],
   templateUrl: './container.component.html',
   styleUrl: './container.component.css',
-  providers: [WorkoutsService]
+  //providers: [WorkoutsService]
 })
 export class ContainerComponent implements OnInit, AfterContentInit{
 
         @ContentChild(PersonComponent) person!: PersonComponent;
 
-        constructor(@Host() private workoutService: WorkoutsService){
+        // constructor(@Host() private workoutService: WorkoutsService){
 
-        }
+        // }
+
+        constructor(){}
+        
         ngOnInit(): void {
                 
         }

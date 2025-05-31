@@ -1,28 +1,25 @@
 <!-- <h2>{{ title }}</h2> -->
 <table class="table">
-        <tr>    
-                <th>Index</th>
-                <th>Name</th>
-                <th>Started on</th>
-                <th>Completed on</th>
-                <th># of workouts</th>
-                <th>Location</th>
-                <th>
-                        Select Workout
-                </th>
+        <tr>
+            <th>Name</th>
+            <th>Started on</th>
+            <th>Completed on</th>
+            <th># of workouts</th>
+            <th>Location</th>
+            <th>Select Workout</th>
         </tr>
-        <tr [ngClass]="e ? 'odd' : 'even'" 
-                *ngFor="let workout of workouts; let i=index; let e=even; let o=odd">
-                <td>{{ i }}</td>
-                <td>{{ workout.workoutName }}</td>
-                <td>{{ workout.startedOn.toLocaleString("en-UK") }}</td>
-                <td>{{ workout.completedOn.toLocaleString("en-UK") }}</td>
-                <td>{{ workout.workoutsDone }}</td>
-                <td>{{ workout.location }}</td>   
-                <td><button class="btn btn-primary"
-                        (click)="selectWorkout(workout)"
-                >
-                select</button>
-                </td>
+        <tr [ngClass]="e ? 'odd' : 'even'" *ngFor="let workout of workouts; let e=even; trackBy: trackByWorkoutId ">
+            <td>{{ workout.title || "No name available" }}</td>
+            <td>{{ workout.startedOn.toLocaleString("en-UK") || "No date available" }}</td>
+            <td>{{ workout.completedOn.toLocaleString("en-UK") || "No date available" }}</td>
+            <td>{{ workout.workoutsDone || 0 }}</td>
+            <td>{{ workout.location || "No location available" }}</td>
+            <td>
+                <!-- <button class="btn btn-primary" (click)="selectWorkout(workout)">
+                    Select
+                </button> -->
+                <button class="btn btn-primary" [routerLink]="['/workout', workout.id]">Go to workout</button>
+            </td>
         </tr>
 </table>
+    

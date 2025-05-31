@@ -12,10 +12,13 @@
         </div>
         <div>
                 <button (click)="addWorkout()">Add Workout</button>
+                <button (click)="editWorkout()">Edit Workout</button>
+                <button (click)="deleteWorkout()">Delete Workout</button>
+
         </div>
         <div>
-                <pow-workouts-list [workouts]="workoutList"> 
-                (selectedWorkout)="selectWorkout($event)">
+                <pow-workouts-list [workouts]="workoutList">
+                        (selectedWorkout)="selectWorkout($event)">
                 </pow-workouts-list>
         </div>
 </div>

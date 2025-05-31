@@ -1,0 +1,40 @@
+{{ workoutForm.pristine | json}}
+{{ workoutForm.dirty | json}}
+
+{{ workoutForm.valid | json}}
+{{ workoutForm.invalid | json}}
+{{ workoutForm.value | json}}
+
+
+
+<div class="alert alert-success">{{successMessage}}</div>
+
+<form #workoutForm="ngForm" (ngSubmit)="AddRoom()">
+        <div class="form-group">
+                <input required class="form-control" type="number" name="id" [(ngModel)]="workout.id"
+                        placeholder="id=0">
+        </div>
+        <div class="form-group">
+                <input class="form-control" type="text" name="title" [(ngModel)]="workout.title"
+                        placeholder="Workout at SportCity">
+        </div>
+        <div class="form-group">
+                <input class="form-control" type="datetime-local" name="startedOn" [(ngModel)]="workout.startedOn"
+                        placeholder="">
+        </div>
+        <div class="form-group">
+                <input class="form-control" type="datetime-local" name="completedOn" [(ngModel)]="workout.completedOn"
+                        placeholder="">
+        </div>
+        <div class="form-group">
+                <input class="form-control" type="number" name="workoutsDone" [(ngModel)]="workout.workoutsDone"
+                        placeholder="# of workouts done" />
+        </div>
+        <div class="form-group">
+                <input class="form-control" type="text" name="location" [(ngModel)]="workout.location"
+                        placeholder="Location">
+        </div>
+        <div>
+                <button class="btn btn-primary" type="submit">Add</button>
+        </div>
+</form>

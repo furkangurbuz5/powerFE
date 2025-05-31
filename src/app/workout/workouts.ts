@@ -8,8 +8,8 @@ export interface Workout {
 }
 
 export interface WorkoutList {
-        workoutId: number,
-        workoutName: string,
+        id?: number,
+        title: string,
         startedOn: Date;
         completedOn: Date;
         workoutsDone: number;
