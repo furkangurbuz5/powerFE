@@ -26,9 +26,6 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [
     NgIf,
-    NgFor,
-    NgClass,
-    PercentPipe,
     WorkoutsListComponent,
     JsonPipe,
     HeaderComponent,
